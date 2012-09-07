@@ -1,0 +1,128 @@
+h1. yab_image
+
+This Textpattern CMS plugin allows you to display an image with an assigned caption. The width of the caption will always fits the width of the displayed image.
+
+*Version:* 0.4
+
+h2. Table of contents
+
+# "Plugin requirements":#help-section01
+# "Tags":#help-section05
+# "Examples":#help-section09
+# "License":#help-section10
+# "Author contact":#help-section11
+
+h2(#help-section02). Plugin requirements
+
+yab_email’s minimum requirements:
+
+* Textpattern 4.x
+
+h2(#help-section05). Tags
+
+h3. yab_image
+
+*id:* image id
+Default: __unset__
+Specifies the id assigned at upload of the image to display. Can be found on the images tab. If both name and id are specified, name is used while id is ignored.
+
+*name:* image name
+Default: __unset__
+Specifies which image to display by its image name as shown on the images tab. Will overwrite id attribute.
+
+*class:* class name
+Default: __unset_
+CSS class attribute applied to the wraptag if set, otherwise to the img tag.
+
+*escape:* string
+Default: __unset__
+If set to @html@ it will escape HTML entities such as <, > and & for the image's alt and title attributes.
+
+*html_id:* HTML id name
+Default: __unset__
+The HTML id attribute applied to the wraptag, if set, otherwise to the img tag.
+
+*style:* css style rule
+Default: __unset__
+Inline CSS style rule.
+
+*wraptag:* HTML element
+Default: __unset__
+HTML tag to be used to wrap the img tag, specified without brackets.
+
+*align:* right, left or center
+Default: center
+Alignment of the image and the caption.
+
+*alt_caption:* text
+Default: __unset__
+Alternate caption, overwrites caption given in image tab.
+
+*alt_alt:* text
+Default: __unset__
+Alternate img alt, overwrites alternate text given in image tab.
+
+*alt_title:* text
+Default: __unset__
+Alternate title, overwrites caption text given in image tab, which is regulary used for img title attribute.
+
+*alt_as_title:* boolean
+Default: 0
+If set, the alt_alt tag attribute or the alternate text is used for the img title attribute.
+
+h2(#help-section09). Examples
+
+h3. Code
+
+Tag attributes will always overwrites given text in the image tab!
+
+Intentionally usage of alt_as_title tag attribute:
+Mainly it could be used for displaying hyperlinks in the caption (the thingy, which is shown under the image) without breaking the HTML validity.
+If you want to display hyperlinks in the caption so you can either write these hyperlinks as *raw HTML in the caption field in your image tab* or as *textile markup in the tag attribute*:
+
+bc. <txp:yab_image id="5" align="right" alt_caption='This is a "Link (Link)":http://textpattern.com/ in a caption' />
+
+*Important:*
+
+* Use single quotes for tags when insert double quotes!
+* Don't start with an double quote (@alt_caption='"Link (Link)":http://textpattern.com/ in a caption'@ will not work).
+Use a beginning whitespace or text before the double quote (@alt_caption=' "Link (Link)":http://textpattern.com/ in a caption'@).
+* Be sure the line will be textiled.
+
+Problem: The generated img title attribute is broken, because the hyperlink with the double quotes breaks it.
+Solution: Now you can additionally use the *alt_title* tag attribute to set a specific img title or the *alt_as_title* so that the img title will generated from alternate text in the image tab.
+
+bc. <txp:yab_image id="5" align="right" alt_caption='This is a "Link (Link)":http://textpattern.com/ in a caption' alt_as_title="1" />
+
+or
+
+bc. <txp:yab_image id="5" align="right" alt_caption='This is a "Link (Link)":http://textpattern.com/ in a caption' alt_title="Nice picture which shows something" />
+
+h3. Styling
+
+The plugin will create new HTML elements (other than @<txp:image />@):
+
+If an image caption is given:
+@<small class="caption">given caption here</small>@: This elements will wrap the caption.
+
+And if additionally the attribute @align@ is used:
+@<span class="img-caption-{align}">image+caption</span>@, where @{align}@ will be your given align: This span is wrapped around the image and the caption. So you have the ability to set different paddings for different floats.
+
+As of version 0.3 @<txp:yab_image />@ will produce (X)HTML-strict output. The align attribute in the image element will be completly removed. So the HTML markup will be different from @<txp:image />@.
+
+You can always use the @wraptag@ attribute to wrap all with another html element.
+Depending on your usage and used wraptag you have to clear the floats.
+
+h2(#help-section10). Licence
+
+This plugin is released under the GNU General Public License Version 2 and above
+
+* Version 2: "http://www.gnu.org/licenses/gpl-2.0.html":http://www.gnu.org/licenses/gpl-2.0.html
+* Version 3: "http://www.gnu.org/licenses/gpl-3.0.html":http://www.gnu.org/licenses/gpl-3.0.html
+
+h2(#help-section11). Author contact
+
+* "Plugin on author’s site":http://www.yablo.de/article/391/yab_image-another-image-plugin-for-textpattern
+* "Plugin on GitHub":https://github.com/trenc/yab_image
+* "Plugin on textpattern forum":http://forum.textpattern.com/viewtopic.php?id=29029
+* "Plugin on textpattern.org":http://textpattern.org/plugins/1045/yab_image
