@@ -17,7 +17,7 @@ $plugin['name'] = 'yab_image';
 // 1 = Plugin help is in raw HTML.  Not recommended.
 # $plugin['allow_html_help'] = 1;
 
-$plugin['version'] = '0.4';
+$plugin['version'] = '0.5';
 $plugin['author'] = 'Tommy Schmucker';
 $plugin['author_uri'] = 'http://www.yablo.de/';
 $plugin['description'] = 'Tiny txp:image replacement that allows you to display an image with an assigned caption';
@@ -55,6 +55,12 @@ if (!defined('txpinterface'))
  * Version 2: http://www.gnu.org/licenses/gpl-2.0.html
  * Version 3: http://www.gnu.org/licenses/gpl-3.0.html
  */
+
+if (class_exists('\Textpattern\Tag\Registry'))
+{
+	Txp::get('\Textpattern\Tag\Registry')
+		->register('yab_image');
+}
 
 function yab_image($atts)
 {
