@@ -2,7 +2,7 @@ h1. yab_image
 
 This Textpattern CMS plugin allows you to display an image with an assigned caption. The width of the caption will always fits the width of the displayed image.
 
-*Version:* 0.4
+*Version:* 0.5
 
 h2. Table of contents
 
